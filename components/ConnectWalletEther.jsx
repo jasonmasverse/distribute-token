@@ -23,7 +23,14 @@ const ConnectWalletEther = () => {
     const [totalPercent, setTotalPercent] = useState(0);
 
     const updateTotalPercent = () => {
-        const newTotal = percent1 + percent2 + percent3 + percent4 + percent5;
+        const numPercent1 = Number(percent1);
+        const numPercent2 = Number(percent2);
+        const numPercent3 = Number(percent3);
+        const numPercent4 = Number(percent4);
+        const numPercent5 = Number(percent5);
+
+        // Calculate the total using the converted numbers
+        const newTotal = numPercent1 + numPercent2 + numPercent3 + numPercent4 + numPercent5;
         setTotalPercent(newTotal);
     };
 
