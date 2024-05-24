@@ -157,6 +157,18 @@ const ConnectWalletEther = () => {
         });
     }
 
+    function copyTx() {
+        navigator.clipboard.writeText(txhash)
+        toast.success('Copied', {
+            style: {
+                borderRadius: '20px',
+                background: '#7888a5',
+                color: '#fff',
+                padding: '12px',
+            },
+        });
+    }
+
     return (
         <>
             <div className=' bg-white/30 backdrop-blur-md rounded-3xl py-4 flex justify-center items-center px-8'>
@@ -216,6 +228,7 @@ const ConnectWalletEther = () => {
                 <div className='text-[13px] font-semibold pt-2 text-white w-full'>
                     <p>*Percentage total must add up to 100%</p>
                     <p>*Minimum two wallets maximum five wallets</p>
+                    <p>*Every amount will be charged 1% before delegating amount</p>
                 </div>
             </div>
 
@@ -237,7 +250,7 @@ const ConnectWalletEther = () => {
                 <div className='flex w-full justify-center items-center py-2'>
                     Tx Hash :&nbsp;
                     {txhash &&
-                        <div className='flex items-center cursor-pointer' onClick={copy}>
+                        <div className='flex items-center cursor-pointer' onClick={copyTx}>
                             {txhash}
                             <span className='ml-1'> <svg className="w-5 h-5 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
                                 <path fillRule="evenodd" d="M18 3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1V9a4 4 0 0 0-4-4h-3a2 2 0 0 0-1 .3V5c0-1.1.9-2 2-2h7Z" clipRule="evenodd" />
