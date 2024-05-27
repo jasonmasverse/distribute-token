@@ -3,11 +3,15 @@ import { useState, useEffect } from 'react';
 import { ContractFactory, ethers } from "ethers";
 import { abi, bytecode } from '@/utils/constants';
 import toast, { Toaster } from 'react-hot-toast';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useTour } from '@reactour/tour'
 
 const ConnectWalletEther = () => {
     const [connectedAccount, setConnectedAccount] = useState('');
     const [contractAddress, setcontractAddress] = useState("")
     const [txhash, settxhash] = useState("")
+    const { setIsOpen } = useTour()
 
     const [wallet1, setWallet1] = useState("0x0000000000000000000000000000000000000000")
     const [percent1, setPercent1] = useState(0)
@@ -37,6 +41,10 @@ const ConnectWalletEther = () => {
     useEffect(() => {
         updateTotalPercent();
     }, [percent1, percent2, percent3, percent4, percent5]);
+
+    useEffect(() => {
+        setIsOpen(true);
+    }, []);
 
     async function connectMetamask() {
         if (window.ethereum) {
@@ -171,7 +179,7 @@ const ConnectWalletEther = () => {
 
     return (
         <>
-            <div className=' bg-white/30 backdrop-blur-md rounded-3xl py-4 flex justify-center items-center px-8'>
+            <div className=' bg-white/30 backdrop-blur-md rounded-3xl py-4 flex justify-center items-center px-8 first-step'>
                 {connectedAccount ? <h1 className='text-white font-bold text-[20px]'>{connectedAccount}</h1> : <button className="w-52 rounded-2xl bg-purple-600 px-4 py-3 font-bold text-white" onClick={() => connectMetamask()}>Connect to Metamask</button>}
             </div>
 
@@ -181,11 +189,11 @@ const ConnectWalletEther = () => {
                 <div className='w-full flex justify-center gap-8 py-4'>
                     <div className='flex gap-4'>
                         <span className='font-bold bg-purple-500 px-4 py-2 rounded-3xl text-white'>Wallet 1</span>
-                        <input className='outline-none rounded-xl w-[460px] text-center px-4' type="text" placeholder='0x147f20a28739da1........
+                        <input className='outline-none rounded-xl w-[460px] text-center px-4 second-step' type="text" placeholder='0x147f20a28739da1........
 ' onChange={(e) => setWallet1(e.target.value)} />
                         {/* <button className='bg-slate-500 px-4 py-2 rounded-xl text-white' onClick={() => pasteWallets()}>Paste</button> */}
                     </div>
-                    <input className='outline-none rounded-xl w-[100px] text-center px-4' min="0" max="100" type="number" placeholder='80%' onChange={(e) => setPercent1(e.target.value)} />
+                    <input className='outline-none rounded-xl w-[100px] text-center px-4 third-step' min="0" max="100" type="number" placeholder='80%' onChange={(e) => setPercent1(e.target.value)} />
                 </div>
 
                 <div className='w-full flex justify-center gap-8 py-4'>
@@ -224,11 +232,20 @@ const ConnectWalletEther = () => {
                     <input className='outline-none rounded-xl w-[100px] text-center px-4' min="0" max="100" type="number" placeholder='1%' onChange={(e) => setPercent5(e.target.value)} />
                 </div>
 
-                <button className='bg-blue-600 px-4 py-2 rounded-xl text-white font-bold text-lg mt-4' onClick={deployContract}>Submit</button>
-                <div className='text-[13px] font-semibold pt-2 text-white w-full'>
-                    <p>*Percentage total must add up to 100%</p>
-                    <p>*Minimum two wallets maximum five wallets</p>
-                    <p>*Every amount will be charged 1% before delegating amount</p>
+                <button className='bg-blue-600 px-4 py-2 rounded-xl text-white font-bold text-lg mt-4 fourth-step' onClick={deployContract}>Submit</button>
+                <div className='text-[13px] font-semibold pt-2 text-white w-full flex justify-between'>
+                    <div>
+                        <p>*Percentage total must add up to 100%</p>
+                        <p>*Minimum two wallets maximum five wallets</p>
+                        <p>*Every amount will be charged 1% before delegating amount</p>
+                    </div>
+                    <Link href={'/instructions'} className='flex items-end'>
+                        <span className='flex gap-1 items-center'>
+                        <Image src="/info.svg" alt="info" width={22} height={22} />
+                        <p className='cursor-pointer text-[14px] hover:underline'>Instructions</p>
+                        </span>
+                    </Link>
+                    {/* <button onClick={() => setIsOpen(true)}>Open Tour</button> */}
                 </div>
             </div>
 

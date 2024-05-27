@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reactour/tour": "^3.6.2",
     "@vercel/analytics": "^1.2.2",
     "ethers": "^6.12.1",
     "next": "14.2.3",
