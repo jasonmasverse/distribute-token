@@ -4,7 +4,6 @@ import { ContractFactory, ethers } from "ethers";
 import { abi, bytecode } from '@/utils/constants';
 import toast, { Toaster } from 'react-hot-toast';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useTour } from '@reactour/tour'
 
 const ConnectWalletEther = () => {
@@ -41,10 +40,6 @@ const ConnectWalletEther = () => {
     useEffect(() => {
         updateTotalPercent();
     }, [percent1, percent2, percent3, percent4, percent5]);
-
-    useEffect(() => {
-        setIsOpen(true);
-    }, []);
 
     async function connectMetamask() {
         if (window.ethereum) {
@@ -239,12 +234,12 @@ const ConnectWalletEther = () => {
                         <p>*Minimum two wallets maximum five wallets</p>
                         <p>*Every amount will be charged 1% before delegating amount</p>
                     </div>
-                    <Link href={'/instructions'} className='flex items-end'>
+                    <div className='flex items-end' onClick={() => setIsOpen(true)}>
                         <span className='flex gap-1 items-center'>
                         <Image src="/info.svg" alt="info" width={22} height={22} />
                         <p className='cursor-pointer text-[14px] hover:underline'>Instructions</p>
                         </span>
-                    </Link>
+                    </div>
                     {/* <button onClick={() => setIsOpen(true)}>Open Tour</button> */}
                 </div>
             </div>
