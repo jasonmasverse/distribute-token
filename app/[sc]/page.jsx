@@ -98,7 +98,7 @@ const page = ({ params }) => {
 
   async function getContents() {
     try {
-      const response = await fetch(`http://localhost:3000/api/contract`, {
+      const response = await fetch(`/api/contract`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -147,7 +147,7 @@ const page = ({ params }) => {
 
   async function getDeployed(wallet) {
     try {
-      const response = await fetch(`http://localhost:3000/api/user`, {
+      const response = await fetch(`/api/user`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

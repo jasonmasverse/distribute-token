@@ -54,7 +54,7 @@ const ConnectWalletEther = () => {
 
     async function getDeployed(wallet) {
         try {
-            const response = await fetch(`http://localhost:3000/api/user`, {
+            const response = await fetch(`/api/user`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -76,7 +76,7 @@ const ConnectWalletEther = () => {
 
     async function updateUserDb(wallet, contract) {
         try {
-            const response = await fetch(`http://localhost:3000/api/user`, {
+            const response = await fetch(`/api/user`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
@@ -100,7 +100,7 @@ const ConnectWalletEther = () => {
 
     async function updateScDb(y) {
         try {
-            const response = await fetch(`http://localhost:3000/api/contract`, {
+            const response = await fetch(`/api/contract`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
