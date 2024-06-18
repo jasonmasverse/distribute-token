@@ -9,6 +9,10 @@ export default function Home() {
       content: 'Connect your wallet to get started.',
     },
     {
+      selector: '.name-step',
+      content: 'Enter name or leave it as default',
+    },
+    {
       selector: '.second-step',
       content: 'Enter respective wallet address',
     },
