@@ -7,7 +7,7 @@ export async function connect() {
     return pool;
   }
 
-  pool = await mysql.createPool({
+  pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password:process.env.DB_PASSWORD,
